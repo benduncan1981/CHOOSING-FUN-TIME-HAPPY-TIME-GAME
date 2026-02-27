@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CHOOSING FUN TIME HAPPY TIME GAME — MAXIMALIST KAWAII CHAOS</title>
+
+<style>
+/* -----------------------------------------------------------
+   🌈💥 MAXIMALIST HARUJUKU KAWAII CHAOS THEME 💥🌈
+   Everything is louder. Everything sparkles. Everything wiggles.
+----------------------------------------------------------- */
+
+:root{
+  --pink:#ff4fa3;
+  --pink2:#ff9fd0;
+  --mint:#a6ffe0;
+  --lav:#d6b3ff;
+  --yellow:#fff7a6;
+  --bg1:#ffe6f7;
+  --bg2:#ffd4f2;
+  --bg3:#fff0fa;
+  --glow:rgba(255,150,220,0.9);
+  --heart:#ff2f92;
+  --heartlight:#ff9fd0;
+}
+
+html,body{
+  margin:0;
+  font-family:"Comic Sans MS","Arial Rounded MT Bold",sans-serif;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+  background-size:400% 400%;
+  animation:bgShift 12s infinite alternate ease-in-out;
+  color:var(--pink);
+  overflow-x:hidden;
+}
+
+@keyframes bgShift{
+  0%{background-position:0% 0%;}
+  100%{background-position:100% 100%;}
+}
+
+h1{
+  margin:20px 0 10px;
+  font-size:48px;
+  font-weight:900;
+  color:white;
+  text-shadow:
+    0 0 10px var(--pink),
+    0 0 20px var(--pink2),
+    0 0 40px var(--pink),
+    0 0 80px var(--pink2);
+  animation:wiggle 1.2s infinite ease-in-out;
+}
+
+@keyframes wiggle{
+  0%{transform:rotate(-1deg);}
+  50%{transform:rotate(1deg);}
+  100%{transform:rotate(-1deg);}
+}
+
+.glass{
+  background:rgba(255,255,255,0.7);
+  border:4px solid var(--pink2);
+  border-radius:24px;
+  padding:18px;
+  width:95%;
+  max-width:450px;
+  box-shadow:0 0 25px var(--glow);
+  margin-bottom:20px;
+  animation:floaty 3s infinite ease-in-out;
+}
+
+@keyframes floaty{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-4px);}
+  100%{transform:translateY(0px);}
+}
+
+textarea,input{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:14px;
+  border:3px solid var(--pink2);
+  background:white;
+  color:var(--pink);
+  font-size:16px;
+  box-shadow:0 0 10px var(--glow);
+}
+
+button{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:14px;
+  border:3px solid var(--pink2);
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+  color:white;
+  text-shadow:0 0 4px rgba(0,0,0,0.3);
+  animation:buttonBounce 1.5s infinite ease-in-out;
+}
+
+@keyframes buttonBounce{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+
+.primary{background:linear-gradient(#ff7ac8,#ff4fa3);}
+.keep{background:linear-gradient(#a6ffe0,#5affc7);color:#006644;}
+.danger{background:linear-gradient(#ff6b6b,#ff3b8b);}
+.secondary{background:linear-gradient(#d6b3ff,#b38aff);}
+
+/* Cards */
+.card{
+  background:white;
+  border:4px solid var(--pink2);
+  border-radius:20px;
+  padding:14px;
+  margin:10px 0;
+  font-size:20px;
+  color:var(--pink);
+  box-shadow:0 0 15px var(--glow);
+  text-align:center;
+  animation:cardWiggle 1.8s infinite ease-in-out;
+}
+
+@keyframes cardWiggle{
+  0%{transform:rotate(-1deg);}
+  50%{transform:rotate(1deg);}
+  100%{transform:rotate(-1deg);}
+}
+
+/* Cat-girl CRT mascot */
+#robotFace{
+  height:80px;
+  background:white;
+  border:4px solid var(--pink2);
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  color:var(--pink);
+  margin-bottom:10px;
+  box-shadow:0 0 15px var(--glow);
+  position:relative;
+  animation:crtFlicker 0.12s infinite alternate;
+}
+
+@keyframes crtFlicker{
+  0%{opacity:0.95;}
+  100%{opacity:1;}
+}
+
+#robotFace::before,
+#robotFace::after{
+  content:"";
+  position:absolute;
+  top:-22px;
+  width:34px;
+  height:34px;
+  background:white;
+  border:4px solid var(--pink2);
+  border-radius:10px;
+  transform:rotate(45deg);
+  box-shadow:0 0 12px var(--glow);
+}
+#robotFace::before{left:20px;}
+#robotFace::after{right:20px;}
+
+/* Speech bubble */
+#speechBubble{
+  background:white;
+  border:4px solid var(--pink2);
+  border-radius:20px;
+  padding:12px;
+  margin-bottom:12px;
+  font-size:16px;
+  color:var(--pink);
+  box-shadow:0 0 15px var(--glow);
+  animation:glitch 0.15s steps(2,end) infinite alternate;
+}
+
+@keyframes glitch{
+  0%{transform:translate(0,0);}
+  100%{transform:translate(2px,-2px);}
+}
+
+/* Heart timer */
+#heartTimerContainer{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:12px 0;
+}
+
+#heartOuter{
+  width:80px;
+  height:80px;
+  background:var(--heart);
+  clip-path:polygon(50% 0%, 61% 12%, 75% 12%, 88% 25%, 88% 40%, 50% 80%, 12% 40%, 12% 25%, 25% 12%, 39% 12%);
+  position:relative;
+  box-shadow:0 0 20px var(--glow);
+  animation:pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+#heartInner{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  background:var(--heartlight);
+  clip-path:inherit;
+  transform-origin:bottom;
+  transition:height 0.2s linear;
+}
+
+/* Results */
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<h1>CHOOSING FUN TIME HAPPY TIME GAME</h1>
+
+<div id="setup" class="glass">
+  <textarea id="items" rows="4" placeholder="Enter items (one per line)"></textarea>
+  <input type="number" id="target" placeholder="Target number">
+  <button class="primary" onclick="start()">START</button>
+</div>
+
+<div id="compare" class="glass hidden">
+
+  <div id="speechBubble">Booting sparkles… ✨</div>
+  <div id="robotFace">^_^</div>
+
+  <div class="card" id="cardA"></div>
+
+  <div id="heartTimerContainer">
+    <div id="heartOuter">
+      <div id="heartInner"></div>
+    </div>
+  </div>
+
+  <div class="card" id="cardB"></div>
+
+  <button class="primary" onclick="choose('A')">CHOOSE A</button>
+  <button class="primary" onclick="choose('B')">CHOOSE B</button>
+
+  <button class="keep" onclick="forceKeep('A')">KEEP A</button>
+  <button class="keep" onclick="forceKeep('B')">KEEP B</button>
+
+  <button class="danger" onclick="forceDiscard('A')">DISCARD A</button>
+  <button class="danger" onclick="forceDiscard('B')">DISCARD B</button>
+
+  <button class="secondary" onclick="goBack()">BACK</button>
+  <button class="secondary" onclick="resetAll()">RESET</button>
+</div>
+
+<div id="results" class="glass hidden"></div>
+
+<script>
+/* -----------------------------------------------------------
+   🌈💥 CHAOS LOGIC + 30 SECOND TIMER + SOUNDS 💥🌈
+----------------------------------------------------------- */
+
+let items=[],target=0;
+let stack=[],left=[],right=[],merged=[];
+let history=[],keepForced=[],discardForced=[];
+let timer=null;
+let timeLeft=30;
+
+const faces=["^_^","UwU",">w<","OwO","*_*","x_x","@_@","≧◡≦","(✿◠‿◠)"];
+
+const snark={
+  start:[
+    "HIIII HOLLIE!!! LET’S MAKE SPARKLY CHAOS TOGETHER!!! 💖💥🌈",
+    "OMGOMGOMG CHOICES!!! MY FAVOURITE FORM OF MAYHEM!!! ✨🔥",
+    "KYAAA~!! TIME TO JUDGE EVERYTHING YOU LOVE!!! 💗😼"
+  ],
+  choose:[
+    "YAAAY YOU PICKED SOMETHING!! I’M SCREAMING!! 💖🌈",
+    "FINALLY!! I WAS ABOUT TO EXPLODE FROM ANTICIPATION!! 💕🔥",
+    "SPARKLE‑POWERED DECISIVENESS!! I ADORE THIS FOR YOU!! ✨💗"
+  ],
+  keep:[
+    "YOU’RE KEEPING IT?? CUTE!! CHAOTIC!! I SUPPORT YOU!! 💖💥",
+    "YESS CLING TO IT!! EMOTIONAL ATTACHMENT IS DELICIOUS!! 💕😼",
+    "KEEPING?? BOLD!! SPARKLY!! SLIGHTLY UNHINGED!! 💗✨"
+  ],
+  discard:[
+    "YAAAY THROW IT AWAY!! YEET THE CLUTTER!! 💖🔥",
+    "DISCARDED!! INTO THE SPARKLY VOID IT GOES!! ✨💀✨",
+    "BYE‑BYE ITEM!! ENJOY THE TRASH REALM!! 💗🗑️"
+  ],
+  timeout:[
+    "EEEEEK!! YOU TOOK TOO LONG!! I PANICKED AND YEETED BOTH!! 💖🔥",
+    "OOPSIE‑WOOPSIE!! TIME’S UP! INTO THE VOID THEY GOOOO~ ✨💀✨"
+  ],
+  back:[
+    "UNDOING YOUR CHOICE?? SAME TBH!! 💖😵",
+    "REVERSING TIME?? MAGICAL‑GIRL POWERS ACTIVATE!! 💗✨"
+  ],
+  finish:[
+    "WE DID IT!! SPARKLE‑POWERED SUCCESS!! 💖🌈",
+    "YAAAY RESULTS!! I’M EXHAUSTED BUT ADORABLE!! 💕😼"
+  ]
+};
+
+function setSnark(type){
+  const bubble=document.getElementById("speechBubble");
+  const arr=snark[type];
+  bubble.textContent=arr[Math.floor(Math.random()*arr.length)];
+  document.getElementById("robotFace").textContent=faces[Math.floor(Math.random()*faces.length)];
+}
+
+/* SOUND EFFECTS */
+const beep=new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
+const panic=new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");
+const explode=new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+
+function startTimer(){
+  timeLeft=30;
+  updateHeart();
+  clearInterval(timer);
+  timer=setInterval(()=>{
+    timeLeft-=1;
+    updateHeart();
+    beep.play();
+
+    if(timeLeft===5){
+      panic.play();
+      document.getElementById("compare").style.animation="shake 0.2s infinite";
+    }
+
+    if(timeLeft<=0){
+      clearInterval(timer);
+      explode.play();
+      autoDiscard();
+    }
+  },1000);
+}
+
+function updateHeart(){
+  const inner=document.getElementById("heartInner");
+  const pct=Math.max(timeLeft/30,0);
+  inner.style.height=(pct*100)+"%";
+}
+
+function autoDiscard(){
+  setSnark("timeout");
+  if(left.length) discardForced.push(left.shift());
+  if(right.length) discardForced.push(right.shift());
+  show();
+}
+
+function start(){
+  items=document.getElementById("items").value.split("\n").map(x=>x.trim()).filter(Boolean);
+  target=parseInt(document.getElementById("target").value);
+  if(!items.length||!target||target>items.length){alert("CHECK INPUTS");return;}
+
+  stack=items.map(i=>[i]);
+  history=[];keepForced=[];discardForced=[];
+  document.getElementById("setup").classList.add("hidden");
+  document.getElementById("compare").classList.remove("hidden");
+  setSnark("start");
+  nextMerge();
+}
+
+function nextMerge(){
+  if(stack.length===1){finish();return;}
+  left=stack.shift();
+  right=stack.shift();
+  merged=[];
+  show();
+}
+
+function show(){
+  if(!left.length){
+    stack.push(merged.concat(right));
+    nextMerge();
+    return;
+  }
+  if(!right.length){
+    stack.push(merged.concat(left));
+    nextMerge();
+    return;
+  }
+
+  document.getElementById("cardA").innerText=left[0];
+  document.getElementById("cardB").innerText=right[0];
+
+  startTimer();
+}
+
+function choose(side){
+  history.push({left:[...left],right:[...right],merged:[...merged],stack:[...stack]});
+  if(side==="A") merged.push(left.shift());
+  else merged.push(right.shift());
+  setSnark("choose");
+  show();
+}
+
+function forceKeep(side){
+  if(side==="A") keepForced.push(left.shift());
+  else keepForced.push(right.shift());
+  setSnark("keep");
+  show();
+}
+
+function forceDiscard(side){
+  if(side==="A") discardForced.push(left.shift());
+  else discardForced.push(right.shift());
+  setSnark("discard");
+  show();
+}
+
+function goBack(){
+  if(!history.length)return;
+  let prev=history.pop();
+  left=prev.left;right=prev.right;
+  merged=prev.merged;stack=prev.stack;
+  setSnark("back");
+  show();
+}
+
+function finish(){
+  clearInterval(timer);
+  let ranked=stack[0];
+  ranked=keepForced.concat(ranked.filter(x=>!keepForced.includes(x)));
+  ranked=ranked.filter(x=>!discardForced.includes(x));
+
+  let keep=ranked.slice(0,target);
+  let discard=ranked.slice(target).concat(discardForced);
+
+  function format(list){
+    return list.map(i=>`<div>${i}</div>`).join("");
+  }
+
+  document.getElementById("compare").classList.add("hidden");
+  document.getElementById("results").classList.remove("hidden");
+
+  document.getElementById("results").innerHTML=
+    "<h2>KEEP</h2>"+format(keep)+
+    "<h2>DISCARD</h2>"+format(discard)+
+    "<br><button class='primary' onclick='resetAll()'>RESTART</button>";
+
+  setSnark("finish");
+}
+
+function resetAll(){location.reload();}
+</script>
+
+</body>
+</html>

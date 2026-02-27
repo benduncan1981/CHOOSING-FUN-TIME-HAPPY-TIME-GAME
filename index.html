@@ -3,36 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CHOOSING FUN TIME HAPPY TIME GAME — MAXIMALIST KAWAII CHAOS</title>
+<title>CHOOSING FUN TIME HAPPY TIME GAME</title>
 
 <style>
-/* -----------------------------------------------------------
-   🌈💥 MAXIMALIST HARUJUKU KAWAII CHAOS THEME 💥🌈
-   Everything is louder. Everything sparkles. Everything wiggles.
------------------------------------------------------------ */
-
 :root{
   --pink:#ff4fa3;
-  --pink2:#ff9fd0;
+  --pink-soft:#ff9fd0;
   --mint:#a6ffe0;
   --lav:#d6b3ff;
   --yellow:#fff7a6;
   --bg1:#ffe6f7;
   --bg2:#ffd4f2;
   --bg3:#fff0fa;
-  --glow:rgba(255,150,220,0.9);
   --heart:#ff2f92;
-  --heartlight:#ff9fd0;
+  --heart-fill:#ff9fd0;
+  --heart-empty:#000000;
+  --glow:rgba(255,150,220,0.8);
 }
+
+*{box-sizing:border-box;}
 
 html,body{
   margin:0;
-  font-family:"Comic Sans MS","Arial Rounded MT Bold",sans-serif;
+  padding:0;
+  font-family:"Comic Sans MS","Arial Rounded MT Bold",system-ui,sans-serif;
   background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
-  background-size:400% 400%;
-  animation:bgShift 12s infinite alternate ease-in-out;
+  background-size:300% 300%;
+  animation:bgShift 16s infinite alternate ease-in-out;
   color:var(--pink);
-  overflow-x:hidden;
+  height:100%;
+  overflow:hidden;
 }
 
 @keyframes bgShift{
@@ -40,114 +40,125 @@ html,body{
   100%{background-position:100% 100%;}
 }
 
-h1{
-  margin:20px 0 10px;
-  font-size:48px;
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.app{
+  width:100%;
+  max-width:420px;
+  height:100vh;
+  padding:8px 10px 10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+}
+
+/* Small title above mascot */
+.app-title{
+  font-size:16px;
   font-weight:900;
   color:white;
   text-shadow:
-    0 0 10px var(--pink),
-    0 0 20px var(--pink2),
-    0 0 40px var(--pink),
-    0 0 80px var(--pink2);
-  animation:wiggle 1.2s infinite ease-in-out;
+    0 0 6px var(--pink),
+    0 0 10px var(--pink-soft);
+  margin-bottom:4px;
+  text-align:center;
 }
 
-@keyframes wiggle{
-  0%{transform:rotate(-1deg);}
-  50%{transform:rotate(1deg);}
-  100%{transform:rotate(-1deg);}
-}
-
+/* Main card container */
 .glass{
-  background:rgba(255,255,255,0.7);
-  border:4px solid var(--pink2);
-  border-radius:24px;
-  padding:18px;
-  width:95%;
-  max-width:450px;
-  box-shadow:0 0 25px var(--glow);
-  margin-bottom:20px;
-  animation:floaty 3s infinite ease-in-out;
-}
-
-@keyframes floaty{
-  0%{transform:translateY(0px);}
-  50%{transform:translateY(-4px);}
-  100%{transform:translateY(0px);}
-}
-
-textarea,input{
+  background:rgba(255,255,255,0.75);
+  border-radius:22px;
+  border:3px solid var(--pink-soft);
+  box-shadow:0 0 18px var(--glow);
+  padding:10px;
   width:100%;
-  padding:12px;
-  margin-bottom:10px;
-  border-radius:14px;
-  border:3px solid var(--pink2);
+}
+
+/* Setup section */
+#setup textarea,
+#setup input{
+  width:100%;
+  padding:8px;
+  margin-bottom:6px;
+  border-radius:16px;
+  border:2px solid var(--pink-soft);
+  font-size:13px;
   background:white;
   color:var(--pink);
-  font-size:16px;
-  box-shadow:0 0 10px var(--glow);
+  box-shadow:0 0 8px var(--glow);
 }
 
 button{
   width:100%;
-  padding:12px;
-  margin:8px 0;
-  border-radius:14px;
-  border:3px solid var(--pink2);
-  font-size:16px;
-  font-weight:900;
+  padding:8px;
+  margin:4px 0;
+  border-radius:999px;
+  border:none;
+  font-size:13px;
+  font-weight:800;
   cursor:pointer;
   color:white;
   text-shadow:0 0 4px rgba(0,0,0,0.3);
-  animation:buttonBounce 1.5s infinite ease-in-out;
+  box-shadow:0 0 10px var(--glow);
+  transition:transform 0.1s ease;
+}
+button:active{transform:scale(0.96);}
+
+.btn-primary{background:linear-gradient(135deg,#ff7ac8,#ff4fa3);}
+.btn-keep{background:linear-gradient(135deg,#a6ffe0,#5affc7);color:#005533;}
+.btn-danger{background:linear-gradient(135deg,#ff6b6b,#ff3b8b);}
+.btn-secondary{background:linear-gradient(135deg,#d6b3ff,#b38aff);}
+
+/* Compare layout */
+#compare{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
-@keyframes buttonBounce{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.05);}
-  100%{transform:scale(1);}
+/* Speech + mascot row */
+.header-row{
+  display:flex;
+  gap:6px;
+  align-items:stretch;
 }
 
-.primary{background:linear-gradient(#ff7ac8,#ff4fa3);}
-.keep{background:linear-gradient(#a6ffe0,#5affc7);color:#006644;}
-.danger{background:linear-gradient(#ff6b6b,#ff3b8b);}
-.secondary{background:linear-gradient(#d6b3ff,#b38aff);}
-
-/* Cards */
-.card{
+/* Speech bubble */
+#speechBubble{
+  flex:2;
   background:white;
-  border:4px solid var(--pink2);
-  border-radius:20px;
-  padding:14px;
-  margin:10px 0;
-  font-size:20px;
-  color:var(--pink);
-  box-shadow:0 0 15px var(--glow);
-  text-align:center;
-  animation:cardWiggle 1.8s infinite ease-in-out;
+  border-radius:18px;
+  border:3px solid var(--pink-soft);
+  padding:6px;
+  font-size:12px;
+  line-height:1.2;
+  box-shadow:0 0 10px var(--glow);
+  animation:glitch 0.18s steps(2,end) infinite alternate;
 }
 
-@keyframes cardWiggle{
-  0%{transform:rotate(-1deg);}
-  50%{transform:rotate(1deg);}
-  100%{transform:rotate(-1deg);}
+@keyframes glitch{
+  0%{transform:translate(0,0);}
+  100%{transform:translate(1px,-1px);}
 }
 
-/* Cat-girl CRT mascot */
+/* Mascot CRT cat-girl */
 #robotFace{
-  height:80px;
+  flex:1;
   background:white;
-  border:4px solid var(--pink2);
-  border-radius:24px;
+  border-radius:20px;
+  border:3px solid var(--pink-soft);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:34px;
+  font-size:20px;
   color:var(--pink);
-  margin-bottom:10px;
-  box-shadow:0 0 15px var(--glow);
   position:relative;
+  box-shadow:0 0 12px var(--glow);
   animation:crtFlicker 0.12s infinite alternate;
 }
 
@@ -156,166 +167,220 @@ button{
   100%{opacity:1;}
 }
 
+/* Cat ears */
 #robotFace::before,
 #robotFace::after{
   content:"";
   position:absolute;
-  top:-22px;
-  width:34px;
-  height:34px;
+  top:-16px;
+  width:22px;
+  height:22px;
   background:white;
-  border:4px solid var(--pink2);
-  border-radius:10px;
+  border-radius:8px;
+  border:3px solid var(--pink-soft);
   transform:rotate(45deg);
-  box-shadow:0 0 12px var(--glow);
+  box-shadow:0 0 10px var(--glow);
 }
-#robotFace::before{left:20px;}
-#robotFace::after{right:20px;}
+#robotFace::before{left:8px;}
+#robotFace::after{right:8px;}
 
-/* Speech bubble */
-#speechBubble{
+/* Cards row */
+.cards-row{
+  display:flex;
+  gap:6px;
+  margin-top:4px;
+}
+
+.card{
+  flex:1;
   background:white;
-  border:4px solid var(--pink2);
-  border-radius:20px;
-  padding:12px;
-  margin-bottom:12px;
-  font-size:16px;
+  border-radius:18px;
+  border:3px solid var(--pink-soft);
+  padding:8px;
+  font-size:14px;
+  text-align:center;
   color:var(--pink);
-  box-shadow:0 0 15px var(--glow);
-  animation:glitch 0.15s steps(2,end) infinite alternate;
+  box-shadow:0 0 10px var(--glow);
+  animation:cardWiggle 2s infinite ease-in-out;
 }
 
-@keyframes glitch{
-  0%{transform:translate(0,0);}
-  100%{transform:translate(2px,-2px);}
+@keyframes cardWiggle{
+  0%{transform:rotate(-1deg);}
+  50%{transform:rotate(1deg);}
+  100%{transform:rotate(-1deg);}
 }
 
-/* Heart timer */
-#heartTimerContainer{
+/* Heart timer between cards row */
+.heart-row{
   display:flex;
   justify-content:center;
   align-items:center;
-  margin:12px 0;
+  margin:2px 0 4px;
 }
 
-#heartOuter{
-  width:80px;
-  height:80px;
-  background:var(--heart);
-  clip-path:polygon(50% 0%, 61% 12%, 75% 12%, 88% 25%, 88% 40%, 50% 80%, 12% 40%, 12% 25%, 25% 12%, 39% 12%);
+/* Heart shape using two circles + triangle */
+.heart-shell{
+  width:60px;
+  height:54px;
   position:relative;
-  box-shadow:0 0 20px var(--glow);
-  animation:pulse 1.2s infinite ease-in-out;
+  filter:drop-shadow(0 0 10px var(--glow));
 }
-
-@keyframes pulse{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.08);}
-  100%{transform:scale(1);}
-}
-
-#heartInner{
+.heart-base{
   position:absolute;
-  left:0;
-  bottom:0;
-  width:100%;
-  height:100%;
-  background:var(--heartlight);
-  clip-path:inherit;
-  transform-origin:bottom;
-  transition:height 0.2s linear;
+  inset:0;
+  background:var(--heart);
+  clip-path:path("M30 54 L2 26 A14 14 0 0 1 30 10 A14 14 0 0 1 58 26 Z");
 }
+.heart-fill{
+  position:absolute;
+  inset:0;
+  background:var(--heart-fill);
+  clip-path:path("M30 54 L2 26 A14 14 0 0 1 30 10 A14 14 0 0 1 58 26 Z");
+  transform-origin:bottom center;
+  transition:transform 0.2s linear, background 0.2s linear;
+}
+
+/* Button rows */
+.button-row{
+  display:flex;
+  gap:6px;
+  margin-top:2px;
+}
+.button-row button{flex:1;}
 
 /* Results */
+#results{
+  font-size:13px;
+  line-height:1.3;
+}
+#results h2{
+  font-size:15px;
+  margin:6px 0 2px;
+  color:var(--pink);
+}
+
+/* Floating hearts / stickers (controlled chaos) */
+.floating-layer{
+  pointer-events:none;
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  z-index:-1;
+}
+.floating-heart{
+  position:absolute;
+  font-size:14px;
+  opacity:0.7;
+  animation:floatUp 8s linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(100vh) translateX(0);opacity:0;}
+  10%{opacity:0.8;}
+  90%{opacity:0.8;}
+  100%{transform:translateY(-20vh) translateX(0);opacity:0;}
+}
+
 .hidden{display:none;}
 </style>
 </head>
 
 <body>
+<div class="app">
 
-<h1>CHOOSING FUN TIME HAPPY TIME GAME</h1>
+  <div class="app-title">CHOOSING FUN TIME HAPPY TIME GAME</div>
 
-<div id="setup" class="glass">
-  <textarea id="items" rows="4" placeholder="Enter items (one per line)"></textarea>
-  <input type="number" id="target" placeholder="Target number">
-  <button class="primary" onclick="start()">START</button>
-</div>
+  <div id="setup" class="glass">
+    <textarea id="items" rows="4" placeholder="Enter items (one per line) for Hollie to choose from 💖"></textarea>
+    <input type="number" id="target" placeholder="How many should Hollie keep?">
+    <button class="btn-primary" onclick="start()">START THE FUN TIME 💖</button>
+  </div>
 
-<div id="compare" class="glass hidden">
+  <div id="compare" class="glass hidden">
+    <div class="header-row">
+      <div id="speechBubble">Hi Hollie!! It’s choosing fun time happy time!! 💖✨</div>
+      <div id="robotFace">^_^</div>
+    </div>
 
-  <div id="speechBubble">Booting sparkles… ✨</div>
-  <div id="robotFace">^_^</div>
+    <div class="cards-row">
+      <div class="card" id="cardA"></div>
+      <div class="card" id="cardB"></div>
+    </div>
 
-  <div class="card" id="cardA"></div>
+    <div class="heart-row">
+      <div class="heart-shell">
+        <div class="heart-base"></div>
+        <div class="heart-fill" id="heartFill"></div>
+      </div>
+    </div>
 
-  <div id="heartTimerContainer">
-    <div id="heartOuter">
-      <div id="heartInner"></div>
+    <div class="button-row">
+      <button class="btn-primary" onclick="choose('A')">CHOOSE A</button>
+      <button class="btn-primary" onclick="choose('B')">CHOOSE B</button>
+    </div>
+
+    <div class="button-row">
+      <button class="btn-keep" onclick="forceKeep('A')">KEEP A</button>
+      <button class="btn-keep" onclick="forceKeep('B')">KEEP B</button>
+    </div>
+
+    <div class="button-row">
+      <button class="btn-danger" onclick="forceDiscard('A')">DISCARD A</button>
+      <button class="btn-danger" onclick="forceDiscard('B')">DISCARD B</button>
+    </div>
+
+    <div class="button-row">
+      <button class="btn-secondary" onclick="goBack()">BACK</button>
+      <button class="btn-secondary" onclick="resetAll()">RESET</button>
     </div>
   </div>
 
-  <div class="card" id="cardB"></div>
-
-  <button class="primary" onclick="choose('A')">CHOOSE A</button>
-  <button class="primary" onclick="choose('B')">CHOOSE B</button>
-
-  <button class="keep" onclick="forceKeep('A')">KEEP A</button>
-  <button class="keep" onclick="forceKeep('B')">KEEP B</button>
-
-  <button class="danger" onclick="forceDiscard('A')">DISCARD A</button>
-  <button class="danger" onclick="forceDiscard('B')">DISCARD B</button>
-
-  <button class="secondary" onclick="goBack()">BACK</button>
-  <button class="secondary" onclick="resetAll()">RESET</button>
+  <div id="results" class="glass hidden"></div>
 </div>
 
-<div id="results" class="glass hidden"></div>
+<!-- Floating hearts / stickers layer -->
+<div class="floating-layer" id="floatingLayer"></div>
 
 <script>
-/* -----------------------------------------------------------
-   🌈💥 CHAOS LOGIC + 30 SECOND TIMER + SOUNDS 💥🌈
------------------------------------------------------------ */
-
 let items=[],target=0;
 let stack=[],left=[],right=[],merged=[];
 let history=[],keepForced=[],discardForced=[];
 let timer=null;
 let timeLeft=30;
 
-const faces=["^_^","UwU",">w<","OwO","*_*","x_x","@_@","≧◡≦","(✿◠‿◠)"];
+const faces=["^_^","UwU",">w<","OwO","*_*","x_x","≧◡≦","(✿◠‿◠)"];
 
 const snark={
   start:[
-    "HIIII HOLLIE!!! LET’S MAKE SPARKLY CHAOS TOGETHER!!! 💖💥🌈",
-    "OMGOMGOMG CHOICES!!! MY FAVOURITE FORM OF MAYHEM!!! ✨🔥",
-    "KYAAA~!! TIME TO JUDGE EVERYTHING YOU LOVE!!! 💗😼"
+    "Hi Hollie!! I’m your chaos kitty!! Let’s make sparkly choices!! 💖✨",
+    "Hollieee~ it’s time for CHOOSING FUN TIME HAPPY TIME!! 🌈💖",
+    "Yaaay Hollie pressed start!! I’m so proud and slightly unhinged!! 💕"
   ],
   choose:[
-    "YAAAY YOU PICKED SOMETHING!! I’M SCREAMING!! 💖🌈",
-    "FINALLY!! I WAS ABOUT TO EXPLODE FROM ANTICIPATION!! 💕🔥",
-    "SPARKLE‑POWERED DECISIVENESS!! I ADORE THIS FOR YOU!! ✨💗"
+    "Nice choice, Hollie!! I support your beautiful chaos!! 💖",
+    "Sparkle decision!! You’re doing amazing, sweetie!! ✨",
+    "That one?? ICONIC. I love your brain. 💕"
   ],
   keep:[
-    "YOU’RE KEEPING IT?? CUTE!! CHAOTIC!! I SUPPORT YOU!! 💖💥",
-    "YESS CLING TO IT!! EMOTIONAL ATTACHMENT IS DELICIOUS!! 💕😼",
-    "KEEPING?? BOLD!! SPARKLY!! SLIGHTLY UNHINGED!! 💗✨"
+    "Keeping it?? Awwww, Hollie loves this one!! 💖",
+    "YES, KEEP IT!! Emotional attachment is valid and sparkly!! ✨",
+    "We’re keeping this one FOREVER (or until next declutter) 💕"
   ],
   discard:[
-    "YAAAY THROW IT AWAY!! YEET THE CLUTTER!! 💖🔥",
-    "DISCARDED!! INTO THE SPARKLY VOID IT GOES!! ✨💀✨",
-    "BYE‑BYE ITEM!! ENJOY THE TRASH REALM!! 💗🗑️"
+    "BYE‑BYE!! Into the sparkly void it goes!! 💖🗑️",
+    "Yeet!! Hollie has spoken!! ✨",
+    "We release it with love and glitter!! 💕"
   ],
   timeout:[
-    "EEEEEK!! YOU TOOK TOO LONG!! I PANICKED AND YEETED BOTH!! 💖🔥",
-    "OOPSIE‑WOOPSIE!! TIME’S UP! INTO THE VOID THEY GOOOO~ ✨💀✨"
+    "Eeeek!! Time’s up, Hollie!! I panicked and threw both away!! 💖🔥",
+    "Oops!! The heart went empty… they both fell into the void!! ✨💀"
   ],
   back:[
-    "UNDOING YOUR CHOICE?? SAME TBH!! 💖😵",
-    "REVERSING TIME?? MAGICAL‑GIRL POWERS ACTIVATE!! 💗✨"
+    "Undo time!! We rewind the sparkles for you, Hollie!! 💖",
+    "Reversing reality just for you!! ✨"
   ],
   finish:[
-    "WE DID IT!! SPARKLE‑POWERED SUCCESS!! 💖🌈",
-    "YAAAY RESULTS!! I’M EXHAUSTED BUT ADORABLE!! 💕😼"
+    "We did it, Hollie!! CHOOSING FUN TIME SUCCESS!! 💖🌈",
+    "All done!! Look at your beautiful choices!! 💕"
   ]
 };
 
@@ -323,10 +388,11 @@ function setSnark(type){
   const bubble=document.getElementById("speechBubble");
   const arr=snark[type];
   bubble.textContent=arr[Math.floor(Math.random()*arr.length)];
-  document.getElementById("robotFace").textContent=faces[Math.floor(Math.random()*faces.length)];
+  document.getElementById("robotFace").textContent=
+    faces[Math.floor(Math.random()*faces.length)];
 }
 
-/* SOUND EFFECTS */
+/* Sounds */
 const beep=new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
 const panic=new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");
 const explode=new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
@@ -338,39 +404,53 @@ function startTimer(){
   timer=setInterval(()=>{
     timeLeft-=1;
     updateHeart();
-    beep.play();
+    if(timeLeft>0) beep.play().catch(()=>{});
 
     if(timeLeft===5){
-      panic.play();
-      document.getElementById("compare").style.animation="shake 0.2s infinite";
+      panic.play().catch(()=>{});
     }
 
     if(timeLeft<=0){
       clearInterval(timer);
-      explode.play();
+      explode.play().catch(()=>{});
       autoDiscard();
     }
   },1000);
 }
 
 function updateHeart(){
-  const inner=document.getElementById("heartInner");
+  const fill=document.getElementById("heartFill");
   const pct=Math.max(timeLeft/30,0);
-  inner.style.height=(pct*100)+"%";
+  if(pct>0){
+    fill.style.transform="scaleY("+pct+")";
+    fill.style.background= "var(--heart-fill)";
+  }else{
+    fill.style.transform="scaleY(0.01)";
+    fill.style.background= "var(--heart-empty)";
+  }
 }
 
-function autoDiscard(){
-  setSnark("timeout");
-  if(left.length) discardForced.push(left.shift());
-  if(right.length) discardForced.push(right.shift());
-  show();
+/* Floating hearts / stickers */
+function spawnFloating(){
+  const layer=document.getElementById("floatingLayer");
+  const el=document.createElement("div");
+  el.className="floating-heart";
+  const emojis=["💖","✨","💗","🌈","⭐","💕"];
+  el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.animationDuration=(6+Math.random()*4)+"s";
+  layer.appendChild(el);
+  setTimeout(()=>layer.removeChild(el),10000);
 }
+setInterval(spawnFloating,1200);
 
 function start(){
   items=document.getElementById("items").value.split("\n").map(x=>x.trim()).filter(Boolean);
   target=parseInt(document.getElementById("target").value);
-  if(!items.length||!target||target>items.length){alert("CHECK INPUTS");return;}
-
+  if(!items.length||!target||target>items.length){
+    alert("Check the list and target for Hollie 💖");
+    return;
+  }
   stack=items.map(i=>[i]);
   history=[];keepForced=[];discardForced=[];
   document.getElementById("setup").classList.add("hidden");
@@ -398,10 +478,8 @@ function show(){
     nextMerge();
     return;
   }
-
   document.getElementById("cardA").innerText=left[0];
   document.getElementById("cardB").innerText=right[0];
-
   startTimer();
 }
 
@@ -427,11 +505,20 @@ function forceDiscard(side){
   show();
 }
 
+function autoDiscard(){
+  setSnark("timeout");
+  if(left.length) discardForced.push(left.shift());
+  if(right.length) discardForced.push(right.shift());
+  show();
+}
+
 function goBack(){
   if(!history.length)return;
-  let prev=history.pop();
-  left=prev.left;right=prev.right;
-  merged=prev.merged;stack=prev.stack;
+  const prev=history.pop();
+  left=prev.left;
+  right=prev.right;
+  merged=prev.merged;
+  stack=prev.stack;
   setSnark("back");
   show();
 }
@@ -446,22 +533,20 @@ function finish(){
   let discard=ranked.slice(target).concat(discardForced);
 
   function format(list){
-    return list.map(i=>`<div>${i}</div>`).join("");
+    return list.map(i=>`<div>• ${i}</div>`).join("");
   }
 
   document.getElementById("compare").classList.add("hidden");
-  document.getElementById("results").classList.remove("hidden");
-
-  document.getElementById("results").innerHTML=
-    "<h2>KEEP</h2>"+format(keep)+
-    "<h2>DISCARD</h2>"+format(discard)+
-    "<br><button class='primary' onclick='resetAll()'>RESTART</button>";
-
+  const res=document.getElementById("results");
+  res.classList.remove("hidden");
+  res.innerHTML=
+    "<h2>Hollie keeps 💖</h2>"+format(keep)+
+    "<h2>Released with glitter ✨</h2>"+format(discard)+
+    "<br><button class='btn-primary' onclick='resetAll()'>PLAY AGAIN</button>";
   setSnark("finish");
 }
 
 function resetAll(){location.reload();}
 </script>
-
 </body>
 </html>

@@ -339,8 +339,8 @@ button:active{transform:scale(0.96);}
   <div id="storePoints" style="font-size:16px; font-weight:bold; text-align:center; margin-bottom:10px;">Points: 0</div>
 
   <div class="glass" style="margin-bottom:10px; font-size:12px;">
-    <strong>How you earns points for letting things go:</strong><br>
-    • +1 point per item for the first 10 items you discard<br>
+    <strong>How Hollie earns points for letting things go:</strong><br>
+    • +1 point per item for the first 10 items she discards<br>
     • +5 points per item for items 11–20<br>
     • +10 points per item for items 21–50<br>
     • +100 points per item for every item after 50<br><br>
@@ -388,51 +388,21 @@ button:active{transform:scale(0.96);}
   </div>
 
   <div id="bonusTierUnlocked" class="hidden">
-        <!-- Top Romance! -->
-<h3>🔥 Adult Tier (250+ points)</h3>
-
-<div class="reward">
-Slow Make-Out Session — 250 pts
-<button onclick="redeem(250,'Slow Make-Out Session')">Redeem</button>
-</div>
-
-<div class="reward">
-Oral Sex from Ben! — 300 pts
-<button onclick="redeem(300,'Oral Sex from Ben!')">Redeem</button>
-</div>
-
-<div class="reward">
-Ben won’t ask you to wear anything like stockings for one week! — 350 pts
-<button onclick="redeem(350,'Ben won’t ask you to wear anything like stockings for one week!')">Redeem</button>
-</div>
-
-<div class="reward">
-Ben takes you on a trip to POUNDTOWN! OH YEAH! — 400 pts
-<button onclick="redeem(400,'Ben takes you on a trip to POUNDTOWN! OH YEAH!')">Redeem</button>
-</div>
-
-<div class="reward">
-A WHOLE DAY UNINTERRUPTED TO DO YOUR HOBBIES! — 1000 pts
-<button onclick="redeem(1000,'A WHOLE DAY UNINTERRUPTED TO DO YOUR HOBBIES!')">Redeem</button>
-</div>
-
+    <h4>Bonus Tier Rewards (neutral placeholders)</h4>
+    <div class="reward">[Custom Reward A] — 250 pts <button onclick="redeem(250,'Custom Reward A')">Redeem</button></div>
+    <div class="reward">[Custom Reward B] — 300 pts <button onclick="redeem(300,'Custom Reward B')">Redeem</button></div>
+    <div class="reward">[Custom Reward C] — 350 pts <button onclick="redeem(350,'Custom Reward C')">Redeem</button></div>
+    <div class="reward">[Custom Reward D] — 400 pts <button onclick="redeem(400,'Custom Reward D')">Redeem</button></div>
+    <div class="reward">[Custom Reward E] — 1000 pts <button onclick="redeem(1000,'Custom Reward E')">Redeem</button></div>
+  </div>
 
   <h3>My Redeemed Rewards</h3>
   <div id="rewardHistory" style="font-size:14px; padding:5px;"></div>
 
 </div>
 
-<!-- ADMIN DASHBOARD -->
-<div id="admin" class="glass hidden" style="position:absolute; top:0; left:0; width:100%; height:100%; padding-bottom:40px;">
-  <button class="btn-secondary" onclick="closeAdmin()">⬅ Back</button>
-  <h2 style="text-align:center;">Admin Dashboard</h2>
-  <p style="font-size:13px;">Set or change the 4‑digit PIN for the Bonus Tier.</p>
-  <input id="newPin" type="password" maxlength="4" placeholder="Set 4-digit PIN" style="width:120px; padding:6px; border-radius:10px; border:2px solid var(--pink-soft);">
-  <button class="btn-secondary" onclick="setNewPin()">Save PIN</button>
-</div>
-
 <!-- ADMIN DASHBOARD (FULL PAGE) -->
-<div id="adminPage" class="glass hidden" 
+<div id="adminPage" class="glass hidden"
      style="position:absolute; top:0; left:0; width:100%; height:100%; overflow-y:auto; padding-bottom:40px;">
 
   <button class="btn-secondary" onclick="closeAdmin()">⬅ Back to Home</button>
@@ -479,7 +449,6 @@ A WHOLE DAY UNINTERRUPTED TO DO YOUR HOBBIES! — 1000 pts
 
 </div>
 
-
 <script>
 let items=[],target=0;
 let stack=[],left=[],right=[],merged=[];
@@ -492,7 +461,7 @@ let holliePoints = 0;
 let rewardHistory = [];
 let bonusPin = localStorage.getItem("bonusPin") || null;
 let enteredPin = "";
-let totalDiscarded = 0; // lifetime discarded count for tiered scoring
+let totalDiscarded = 0;
 
 let audioCtx = null;
 
@@ -665,12 +634,101 @@ function awardDiscardForItem(){
   awardPoints(pts);
 }
 
-/* ADMIN */
+/* ADMIN PAGE CONTROL */
 function openAdmin(){
-  document.getElementById("admin").classList.remove("hidden");
+  updateAdminPanel();
+  document.getElementById("adminPage").classList.remove("hidden");
 }
 function closeAdmin(){
-  document.getElementById("admin").classList.add("hidden");
+  document.getElementById("adminPage").classList.add("hidden");
+}
+function updateAdminPanel(){
+  document.getElementById("adminPoints").innerText = holliePoints;
+  document.getElementById("adminDiscardCount").innerText = totalDiscarded;
+  document.getElementById("adminHistoryCount").innerText = rewardHistory.length;
+  document.getElementById("adminPIN").innerText = bonusPin ? "****" : "(not set)";
+}
+function adminApplyPoints(){
+  const v = parseInt(document.getElementById("adminSetPoints").value);
+  if(!isNaN(v)){
+    holliePoints = v;
+    savePoints();
+    updateAdminPanel();
+    updatePointsDisplay();
+    updateStorePoints();
+    alert("Points updated.");
+  }
+}
+function adminApplyDiscard(){
+  const v = parseInt(document.getElementById("adminSetDiscard").value);
+  if(!isNaN(v)){
+    totalDiscarded = v;
+    savePoints();
+    updateAdminPanel();
+    alert("Discard counter updated.");
+  }
+}
+function adminApplyPIN(){
+  const v = document.getElementById("adminSetPIN").value.trim();
+  if(/^\d{4}$/.test(v)){
+    bonusPin = v;
+    localStorage.setItem("bonusPin", bonusPin);
+    updateAdminPanel();
+    alert("PIN updated.");
+  } else {
+    alert("PIN must be exactly 4 digits.");
+  }
+}
+function adminResetPoints(){
+  if(confirm("Reset points to 0?")){
+    holliePoints = 0;
+    savePoints();
+    updateAdminPanel();
+    updatePointsDisplay();
+    updateStorePoints();
+  }
+}
+function adminResetDiscard(){
+  if(confirm("Reset discard counter?")){
+    totalDiscarded = 0;
+    savePoints();
+    updateAdminPanel();
+  }
+}
+function adminResetHistory(){
+  if(confirm("Clear reward history?")){
+    rewardHistory = [];
+    savePoints();
+    updateAdminPanel();
+    renderRewardHistory();
+  }
+}
+function adminFactoryReset(){
+  if(confirm("FULL RESET: This wipes EVERYTHING. Continue?")){
+    localStorage.clear();
+    location.reload();
+  }
+}
+function adminExportData(){
+  const data = `
+CHOOSING FUN TIME ADMIN EXPORT
+
+Points: ${holliePoints}
+Total Discarded: ${totalDiscarded}
+Reward History (${rewardHistory.length} items):
+${rewardHistory.map(x=>"• "+x).join("\n")}
+
+PIN set: ${bonusPin ? "Yes" : "No"}
+Generated: ${new Date().toLocaleString()}
+  `;
+  if(navigator.share){
+    navigator.share({
+      title: "Admin Data Export",
+      text: data
+    });
+  } else {
+    alert("Sharing not supported on this device.");
+  }
 }
 
 /* BONUS TIER PIN */
@@ -705,16 +763,6 @@ function submitPin(){
     enteredPin = "";
     updatePinDisplay();
   }
-}
-function setNewPin(){
-  const newPin = document.getElementById("newPin").value.trim();
-  if(newPin.length !== 4 || !/^\d{4}$/.test(newPin)){
-    alert("PIN must be exactly 4 digits.");
-    return;
-  }
-  bonusPin = newPin;
-  localStorage.setItem("bonusPin", bonusPin);
-  alert("PIN saved!");
 }
 
 /* REDEEM + EMAIL TO BEN */

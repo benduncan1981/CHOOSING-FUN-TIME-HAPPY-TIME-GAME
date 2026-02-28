@@ -20,9 +20,7 @@
   --heart-empty:#000000;
   --glow:rgba(255,150,220,0.8);
 }
-
 *{box-sizing:border-box;}
-
 html,body{
   margin:0;
   padding:0;
@@ -34,18 +32,15 @@ html,body{
   height:100%;
   overflow:hidden;
 }
-
 @keyframes bgShift{
   0%{background-position:0% 0%;}
   100%{background-position:100% 100%;}
 }
-
 body{
   display:flex;
   justify-content:center;
   align-items:center;
 }
-
 .app{
   width:100%;
   max-width:420px;
@@ -56,20 +51,22 @@ body{
   justify-content:flex-start;
   align-items:center;
 }
-
-/* Small title above mascot */
 .app-title{
   font-size:16px;
   font-weight:900;
   color:white;
-  text-shadow:
-    0 0 6px var(--pink),
-    0 0 10px var(--pink-soft);
-  margin-bottom:4px;
+  text-shadow:0 0 6px var(--pink),0 0 10px var(--pink-soft);
+  margin-bottom:2px;
   text-align:center;
 }
-
-/* Main card container */
+#pointsDisplay{
+  font-size:13px;
+  font-weight:700;
+  color:white;
+  text-shadow:0 0 6px var(--pink-soft);
+  margin-bottom:6px;
+  text-align:center;
+}
 .glass{
   background:rgba(255,255,255,0.75);
   border-radius:22px;
@@ -78,10 +75,7 @@ body{
   padding:10px;
   width:100%;
 }
-
-/* Setup section */
-#setup textarea,
-#setup input{
+#setup textarea,#setup input{
   width:100%;
   padding:8px;
   margin-bottom:6px;
@@ -92,7 +86,6 @@ body{
   color:var(--pink);
   box-shadow:0 0 8px var(--glow);
 }
-
 button{
   width:100%;
   padding:8px;
@@ -108,20 +101,17 @@ button{
   transition:transform 0.1s ease;
 }
 button:active{transform:scale(0.96);}
-
 .btn-primary{background:linear-gradient(135deg,#ff7ac8,#ff4fa3);}
 .btn-keep{background:linear-gradient(135deg,#a6ffe0,#5affc7);color:#005533;}
 .btn-danger{background:linear-gradient(135deg,#ff6b6b,#ff3b8b);}
 .btn-secondary{background:linear-gradient(135deg,#d6b3ff,#b38aff);}
+.hidden{display:none;}
 
-/* Compare layout */
 #compare{
   display:flex;
   flex-direction:column;
   gap:6px;
 }
-
-/* Progress bar */
 .progress-container{
   width:100%;
   height:10px;
@@ -134,18 +124,14 @@ button:active{transform:scale(0.96);}
 .progress-bar{
   height:100%;
   width:0%;
-  background:linear-gradient(90deg, var(--pink), var(--pink-soft));
+  background:linear-gradient(90deg,var(--pink),var(--pink-soft));
   transition:width 0.25s ease-out;
 }
-
-/* Speech + mascot row */
 .header-row{
   display:flex;
   gap:6px;
   align-items:stretch;
 }
-
-/* Speech bubble */
 #speechBubble{
   flex:2;
   background:white;
@@ -155,15 +141,7 @@ button:active{transform:scale(0.96);}
   font-size:12px;
   line-height:1.2;
   box-shadow:0 0 10px var(--glow);
-  animation:glitch 0.18s steps(2,end) infinite alternate;
 }
-
-@keyframes glitch{
-  0%{transform:translate(0,0);}
-  100%{transform:translate(1px,-1px);}
-}
-
-/* Mascot CRT cat-girl */
 #robotFace{
   flex:1;
   background:white;
@@ -176,15 +154,7 @@ button:active{transform:scale(0.96);}
   color:var(--pink);
   position:relative;
   box-shadow:0 0 12px var(--glow);
-  animation:crtFlicker 0.12s infinite alternate;
 }
-
-@keyframes crtFlicker{
-  0%{opacity:0.95;}
-  100%{opacity:1;}
-}
-
-/* Cat ears */
 #robotFace::before,
 #robotFace::after{
   content:"";
@@ -201,13 +171,11 @@ button:active{transform:scale(0.96);}
 #robotFace::before{left:8px;}
 #robotFace::after{right:8px;}
 
-/* Cards row */
 .cards-row{
   display:flex;
   gap:6px;
   margin-top:4px;
 }
-
 .card{
   flex:1;
   background:white;
@@ -218,24 +186,13 @@ button:active{transform:scale(0.96);}
   text-align:center;
   color:var(--pink);
   box-shadow:0 0 10px var(--glow);
-  animation:cardWiggle 2s infinite ease-in-out;
 }
-
-@keyframes cardWiggle{
-  0%{transform:rotate(-1deg);}
-  50%{transform:rotate(1deg);}
-  100%{transform:rotate(-1deg);}
-}
-
-/* Heart timer between cards row */
 .heart-row{
   display:flex;
   justify-content:center;
   align-items:center;
   margin:2px 0 4px;
 }
-
-/* Heart shape */
 .heart-shell{
   width:60px;
   height:54px;
@@ -256,8 +213,6 @@ button:active{transform:scale(0.96);}
   transform-origin:bottom center;
   transition:transform 0.2s linear, background 0.2s linear;
 }
-
-/* Button rows */
 .button-row{
   display:flex;
   gap:6px;
@@ -265,7 +220,6 @@ button:active{transform:scale(0.96);}
 }
 .button-row button{flex:1;}
 
-/* Results */
 #results{
   font-size:13px;
   line-height:1.3;
@@ -276,28 +230,42 @@ button:active{transform:scale(0.96);}
   color:var(--pink);
 }
 
-/* Floating hearts / stickers (controlled chaos) */
-.floating-layer{
-  pointer-events:none;
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  z-index:-1;
+.reward{
+  font-size:13px;
+  margin:3px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
-.floating-heart{
-  position:absolute;
-  font-size:14px;
-  opacity:0.7;
-  animation:floatUp 8s linear infinite;
-}
-@keyframes floatUp{
-  0%{transform:translateY(100vh) translateX(0);opacity:0;}
-  10%{opacity:0.8;}
-  90%{opacity:0.8;}
-  100%{transform:translateY(-20vh) translateX(0);opacity:0;}
+.reward button{
+  width:auto;
+  padding:4px 10px;
+  font-size:11px;
 }
 
-.hidden{display:none;}
+/* PIN / BONUS TIER */
+#bonusTierLocked, #bonusTierUnlocked, #pinEntry, #adminPanel {
+  margin-top: 10px;
+}
+.pin-button {
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  font-size: 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#ff7ac8,#ff4fa3);
+  color: white;
+  border: none;
+  box-shadow: 0 0 8px var(--glow);
+}
+.pin-display {
+  font-size: 24px;
+  letter-spacing: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--pink);
+  font-weight: bold;
+}
 </style>
 </head>
 
@@ -305,15 +273,17 @@ button:active{transform:scale(0.96);}
 <div class="app">
 
   <div class="app-title">CHOOSING FUN TIME HAPPY TIME GAME</div>
+  <div id="pointsDisplay">Points: 0</div>
 
   <div id="setup" class="glass">
     <textarea id="items" rows="4" placeholder="Enter items (one per line) for Hollie to choose from 💖"></textarea>
     <input type="number" id="target" placeholder="How many should Hollie keep?">
     <button class="btn-primary" onclick="start()">START THE FUN TIME 💖</button>
+    <button class="btn-secondary" onclick="openStore()">Hollie’s Reward Shop 💖✨</button>
+    <button class="btn-secondary" onclick="openAdmin()">Admin Dashboard</button>
   </div>
 
   <div id="compare" class="glass hidden">
-
     <div class="progress-container">
       <div class="progress-bar" id="progressBar"></div>
     </div>
@@ -357,44 +327,147 @@ button:active{transform:scale(0.96);}
   </div>
 
   <div id="results" class="glass hidden"></div>
+
 </div>
 
-<!-- Floating hearts / stickers layer -->
-<div class="floating-layer" id="floatingLayer"></div>
+<!-- STORE -->
+<div id="store" class="glass hidden" style="position:absolute; top:0; left:0; width:100%; height:100%; overflow-y:auto; padding-bottom:40px;">
+
+  <button class="btn-secondary" onclick="closeStore()">⬅ Back</button>
+
+  <h2 style="text-align:center; color:var(--pink); margin-top:0;">Hollie’s Reward Shop 💖✨</h2>
+  <div id="storePoints" style="font-size:16px; font-weight:bold; text-align:center; margin-bottom:10px;">Points: 0</div>
+
+  <div class="glass" style="margin-bottom:10px; font-size:12px;">
+    <strong>How you earns points for letting things go:</strong><br>
+    • +1 point per item for the first 10 items you discard<br>
+    • +5 points per item for items 11–20<br>
+    • +10 points per item for items 21–50<br>
+    • +100 points per item for every item after 50<br><br>
+    Plus a little bonus just for finishing a game 💖
+  </div>
+
+  <h3>⭐ Tier 1</h3>
+  <div class="reward">Galaxy chocolate — 10 pts <button onclick="redeem(10,'Galaxy chocolate')">Redeem</button></div>
+  <div class="reward">Drink of Choice — 8 pts <button onclick="redeem(8,'Drink of Choice')">Redeem</button></div>
+
+  <h3>🌙 Tier 2</h3>
+  <div class="reward">Movie night — 25 pts <button onclick="redeem(25,'Movie Night')">Redeem</button></div>
+  <div class="reward">Warm Bath — 30 pts <button onclick="redeem(30,'Warm Bath')">Redeem</button></div>
+
+  <h3>💞 Tier 3</h3>
+  <div class="reward">Date Night — 60 pts <button onclick="redeem(60,'Date Night')">Redeem</button></div>
+  <div class="reward">Dessert Outing — 50 pts <button onclick="redeem(50,'Dessert Outing')">Redeem</button></div>
+
+  <h3>💎 Tier 4</h3>
+  <div class="reward">Full Hollie Day — 150 pts <button onclick="redeem(150,'Hollie Day')">Redeem</button></div>
+  <div class="reward">Surprise Outing — 200 pts <button onclick="redeem(200,'Surprise Outing')">Redeem</button></div>
+
+  <h3>🔐 BONUS TIER (PIN Required)</h3>
+
+  <div id="bonusTierLocked">
+    <button class="btn-secondary" onclick="showPinEntry()">Unlock Bonus Tier 🔒</button>
+  </div>
+
+  <div id="pinEntry" class="hidden">
+    <div class="pin-display" id="pinDisplay">____</div>
+    <div style="display:flex; flex-wrap:wrap; width:200px; margin:auto;">
+      <button class="pin-button" onclick="pressPin(1)">1</button>
+      <button class="pin-button" onclick="pressPin(2)">2</button>
+      <button class="pin-button" onclick="pressPin(3)">3</button>
+      <button class="pin-button" onclick="pressPin(4)">4</button>
+      <button class="pin-button" onclick="pressPin(5)">5</button>
+      <button class="pin-button" onclick="pressPin(6)">6</button>
+      <button class="pin-button" onclick="pressPin(7)">7</button>
+      <button class="pin-button" onclick="pressPin(8)">8</button>
+      <button class="pin-button" onclick="pressPin(9)">9</button>
+      <button class="pin-button" onclick="clearPin()">⌫</button>
+      <button class="pin-button" onclick="pressPin(0)">0</button>
+      <button class="pin-button" onclick="submitPin()">✔</button>
+    </div>
+  </div>
+
+  <div id="bonusTierUnlocked" class="hidden">
+        <!-- Top Romance! -->
+<h3>🔥 Adult Tier (250+ points)</h3>
+
+<div class="reward">
+Slow Make-Out Session — 250 pts
+<button onclick="redeem(250,'Slow Make-Out Session')">Redeem</button>
+</div>
+
+<div class="reward">
+Oral Sex from Ben! — 300 pts
+<button onclick="redeem(300,'Full Body Massage')">Redeem</button>
+</div>
+
+<div class="reward">
+Ben won’t ask you to wear anything like stockings for one week! — 350 pts
+<button onclick="redeem(350,'Sensory Night')">Redeem</button>
+</div>
+
+<div class="reward">
+Ben takes you on a trip to POUNDTOWN! OH YEAH! — 400 pts
+<button onclick="redeem(400,'Fantasy Choice Night')">Redeem</button>
+</div>
+
+<div class="reward">
+A WHOLE DAY UNINTERRUPTED TO DO YOUR HOBBIES! — 1000 pts
+<button onclick="redeem(1000,'After-Hours Date')">Redeem</button>
+</div>
+
+
+  <h3>My Redeemed Rewards</h3>
+  <div id="rewardHistory" style="font-size:14px; padding:5px;"></div>
+
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div id="admin" class="glass hidden" style="position:absolute; top:0; left:0; width:100%; height:100%; padding-bottom:40px;">
+  <button class="btn-secondary" onclick="closeAdmin()">⬅ Back</button>
+  <h2 style="text-align:center;">Admin Dashboard</h2>
+  <p style="font-size:13px;">Set or change the 4‑digit PIN for the Bonus Tier.</p>
+  <input id="newPin" type="password" maxlength="4" placeholder="Set 4-digit PIN" style="width:120px; padding:6px; border-radius:10px; border:2px solid var(--pink-soft);">
+  <button class="btn-secondary" onclick="setNewPin()">Save PIN</button>
+</div>
 
 <script>
 let items=[],target=0;
 let stack=[],left=[],right=[],merged=[];
 let history=[],keepForced=[],discardForced=[];
 let timer=null;
-let timeLeft=30;
+let timeLeft=15;
+let resultsText="";
 
-const faces=["^_^","UwU",">w<","OwO","*_*","x_x","≧◡≦","(✿◠‿◠)"];
+let holliePoints = 0;
+let rewardHistory = [];
+let bonusPin = localStorage.getItem("bonusPin") || null;
+let enteredPin = "";
+let totalDiscarded = 0; // lifetime discarded count for tiered scoring
 
+let audioCtx = null;
+
+const faces=["^_^","UwU",">w<","OwO","*_*","≧◡≦"];
 const snark={
   start:[
     "Hi Hollie!! I’m your chaos kitty!! Let’s make sparkly choices!! 💖✨",
-    "Hollieee~ it’s time for CHOOSING FUN TIME HAPPY TIME!! 🌈💖",
-    "Yaaay Hollie pressed start!! I’m so proud and slightly unhinged!! 💕"
+    "Hollieee~ it’s time for CHOOSING FUN TIME HAPPY TIME!! 🌈💖"
   ],
   choose:[
     "Nice choice, Hollie!! I support your beautiful chaos!! 💖",
-    "Sparkle decision!! You’re doing amazing, sweetie!! ✨",
-    "That one?? ICONIC. I love your brain. 💕"
+    "Sparkle decision!! You’re doing amazing!! ✨"
   ],
   keep:[
     "Keeping it?? Awwww, Hollie loves this one!! 💖",
-    "YES, KEEP IT!! Emotional attachment is valid and sparkly!! ✨",
-    "We’re keeping this one FOREVER (or until next declutter) 💕"
+    "YES, KEEP IT!! Emotional attachment is valid!! ✨"
   ],
   discard:[
-    "BYE‑BYE!! Into the sparkly void it goes!! 💖🗑️",
-    "Yeet!! Hollie has spoken!! ✨",
-    "We release it with love and glitter!! 💕"
+    "We release it with love and glitter!! 💕",
+    "Yeet!! Hollie has spoken!! ✨"
   ],
   timeout:[
-    "Eeeek!! Time’s up, Hollie!! I panicked and threw both away!! 💖🔥",
-    "Oops!! The heart went empty… they both fell into the void!! ✨💀"
+    "Eeeek!! Time’s up, Hollie!! I panicked and threw both away!! 💖",
+    "Oops!! The heart went empty… they both fell into the void!! ✨"
   ],
   back:[
     "Undo time!! We rewind the sparkles for you, Hollie!! 💖",
@@ -414,76 +487,212 @@ function setSnark(type){
     faces[Math.floor(Math.random()*faces.length)];
 }
 
-/* Sounds */
-const beep=new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
-const panic=new Audio("https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg");
-const explode=new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+/* AUDIO */
+function playBeep(){
+  try{
+    if(!audioCtx){
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = "square";
+    osc.frequency.value = 1400;
+    gain.gain.value = 0.12;
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.10);
+  }catch(e){}
+}
+function playTimeoutSound(){
+  try{
+    if(!audioCtx){
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = "sawtooth";
+    osc.frequency.value = 200;
+    gain.gain.value = 0.25;
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.4);
+  }catch(e){}
+}
 
+/* TIMER + HEART */
 function startTimer(){
-  timeLeft=30;
+  timeLeft = 15;
   updateHeart();
   clearInterval(timer);
-  timer=setInterval(()=>{
-    timeLeft-=1;
+  timer = setInterval(()=>{
+    timeLeft -= 1;
+    playBeep();
     updateHeart();
-    if(timeLeft>0) beep.play().catch(()=>{});
-
-    if(timeLeft===5){
-      panic.play().catch(()=>{});
-    }
-
-    if(timeLeft<=0){
+    if(timeLeft <= 0){
       clearInterval(timer);
-      explode.play().catch(()=>{});
+      playTimeoutSound();
       autoDiscard();
     }
   },1000);
 }
-
 function updateHeart(){
   const fill=document.getElementById("heartFill");
-  const pct=Math.max(timeLeft/30,0);
+  const pct=Math.max(timeLeft/15,0);
   if(pct>0){
     fill.style.transform="scaleY("+pct+")";
-    fill.style.background= "var(--heart-fill)";
+    fill.style.background="var(--heart-fill)";
   }else{
     fill.style.transform="scaleY(0.01)";
-    fill.style.background= "var(--heart-empty)";
+    fill.style.background="var(--heart-empty)";
   }
 }
 
-/* Floating hearts / stickers */
-function spawnFloating(){
-  const layer=document.getElementById("floatingLayer");
-  const el=document.createElement("div");
-  el.className="floating-heart";
-  const emojis=["💖","✨","💗","🌈","⭐","💕"];
-  el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-  el.style.left=Math.random()*100+"vw";
-  el.style.animationDuration=(6+Math.random()*4)+"s";
-  layer.appendChild(el);
-  setTimeout(()=>layer.removeChild(el),10000);
-}
-setInterval(spawnFloating,1200);
-
-/* PROGRESS BAR */
+/* PROGRESS */
 function updateProgress(){
   if(!items.length) return;
   const total = items.length;
-
   let remaining = 0;
   if(left && left.length) remaining += left.length;
   if(right && right.length) remaining += right.length;
   if(stack && stack.length){
     for(const group of stack) remaining += group.length;
   }
-  // merged + keepForced + discardForced are already part of total,
-  // but not in remaining, so they count as resolved.
   const resolved = Math.max(total - remaining, 0);
   const pct = Math.min((resolved / total) * 100, 100);
   document.getElementById("progressBar").style.width = pct + "%";
 }
 
+/* POINTS + STORE */
+function loadPoints(){
+  holliePoints = parseInt(localStorage.getItem("holliePoints")) || 0;
+  rewardHistory = JSON.parse(localStorage.getItem("rewardHistory") || "[]");
+  totalDiscarded = parseInt(localStorage.getItem("totalDiscardedCount")) || 0;
+  updatePointsDisplay();
+  updateStorePoints();
+  renderRewardHistory();
+}
+function savePoints(){
+  localStorage.setItem("holliePoints", holliePoints);
+  localStorage.setItem("rewardHistory", JSON.stringify(rewardHistory));
+  localStorage.setItem("totalDiscardedCount", totalDiscarded.toString());
+}
+function updatePointsDisplay(){
+  document.getElementById("pointsDisplay").innerText="Points: "+holliePoints;
+}
+function updateStorePoints(){
+  document.getElementById("storePoints").innerText="Points: "+holliePoints;
+}
+function openStore(){
+  document.getElementById("store").classList.remove("hidden");
+}
+function closeStore(){
+  document.getElementById("store").classList.add("hidden");
+}
+function renderRewardHistory(){
+  const el = document.getElementById("rewardHistory");
+  if(!el) return;
+  el.innerHTML = rewardHistory.map(r => "<div>• " + r + "</div>").join("");
+}
+function awardPoints(base){
+  holliePoints += base;
+  savePoints();
+  updatePointsDisplay();
+  updateStorePoints();
+}
+
+/* DISCARD SCORING */
+function pointsForNextDiscard(){
+  const n = totalDiscarded + 1;
+  if(n <= 10) return 1;
+  if(n <= 20) return 5;
+  if(n <= 50) return 10;
+  return 100;
+}
+function awardDiscardForItem(){
+  const pts = pointsForNextDiscard();
+  totalDiscarded += 1;
+  awardPoints(pts);
+}
+
+/* ADMIN */
+function openAdmin(){
+  document.getElementById("admin").classList.remove("hidden");
+}
+function closeAdmin(){
+  document.getElementById("admin").classList.add("hidden");
+}
+
+/* BONUS TIER PIN */
+function showPinEntry(){
+  document.getElementById("pinEntry").classList.remove("hidden");
+  document.getElementById("bonusTierLocked").classList.add("hidden");
+}
+function pressPin(num){
+  if(enteredPin.length < 4){
+    enteredPin += num;
+    updatePinDisplay();
+  }
+}
+function clearPin(){
+  enteredPin = enteredPin.slice(0, -1);
+  updatePinDisplay();
+}
+function updatePinDisplay(){
+  let masked = enteredPin.padEnd(4, "_");
+  document.getElementById("pinDisplay").innerText = masked;
+}
+function submitPin(){
+  if(!bonusPin){
+    alert("No PIN set yet. Set one in the Admin Dashboard.");
+    return;
+  }
+  if(enteredPin === bonusPin){
+    document.getElementById("pinEntry").classList.add("hidden");
+    document.getElementById("bonusTierUnlocked").classList.remove("hidden");
+  } else {
+    alert("Incorrect PIN!");
+    enteredPin = "";
+    updatePinDisplay();
+  }
+}
+function setNewPin(){
+  const newPin = document.getElementById("newPin").value.trim();
+  if(newPin.length !== 4 || !/^\d{4}$/.test(newPin)){
+    alert("PIN must be exactly 4 digits.");
+    return;
+  }
+  bonusPin = newPin;
+  localStorage.setItem("bonusPin", bonusPin);
+  alert("PIN saved!");
+}
+
+/* REDEEM + EMAIL TO BEN */
+function redeem(cost,name){
+  if(holliePoints<cost){alert("Not enough points yet!");return;}
+  if(!confirm("Redeem "+name+" for "+cost+" points?"))return;
+
+  holliePoints-=cost;
+  rewardHistory.push(name+" ("+new Date().toLocaleString()+")");
+  savePoints();
+  updateStorePoints();
+  updatePointsDisplay();
+  renderRewardHistory();
+
+  const subject = encodeURIComponent("Hollie redeemed a reward!");
+  const body = encodeURIComponent(
+    "Hollie redeemed: " + name +
+    "\nTime: " + new Date().toLocaleString() +
+    "\n\nBen, you have something lovely to do for her 💖"
+  );
+
+  window.location.href = "mailto:bleedthescene@hotmail.com?subject=" + subject + "&body=" + body;
+
+  alert("Hollie redeemed: "+name+"!");
+}
+
+/* GAME FLOW */
 function start(){
   items=document.getElementById("items").value.split("\n").map(x=>x.trim()).filter(Boolean);
   target=parseInt(document.getElementById("target").value);
@@ -496,11 +705,11 @@ function start(){
   left=[];right=[];merged=[];
   document.getElementById("setup").classList.add("hidden");
   document.getElementById("compare").classList.remove("hidden");
+  document.getElementById("results").classList.add("hidden");
   setSnark("start");
   updateProgress();
   nextMerge();
 }
-
 function nextMerge(){
   if(stack.length===1){finish();return;}
   left=stack.shift();
@@ -509,7 +718,6 @@ function nextMerge(){
   updateProgress();
   show();
 }
-
 function show(){
   if(!left.length){
     stack.push(merged.concat(right));
@@ -528,55 +736,114 @@ function show(){
   updateProgress();
   startTimer();
 }
-
+function snapshot(){
+  return {
+    left:[...left],
+    right:[...right],
+    merged:[...merged],
+    stack:stack.map(g=>[...g]),
+    keep:[...keepForced],
+    discard:[...discardForced]
+  };
+}
+function restore(s){
+  left=s.left;
+  right=s.right;
+  merged=s.merged;
+  stack=s.stack;
+  keepForced=s.keep;
+  discardForced=s.discard;
+}
 function choose(side){
-  history.push({left:[...left],right:[...right],merged:[...merged],stack:stack.map(g=>[...g])});
+  history.push(snapshot());
   if(side==="A") merged.push(left.shift());
   else merged.push(right.shift());
   setSnark("choose");
   updateProgress();
   show();
 }
-
 function forceKeep(side){
-  history.push({left:[...left],right:[...right],merged:[...merged],stack:stack.map(g=>[...g]),keep:[...keepForced],discard:[...discardForced]});
+  history.push(snapshot());
   if(side==="A") keepForced.push(left.shift());
   else keepForced.push(right.shift());
   setSnark("keep");
   updateProgress();
   show();
 }
-
 function forceDiscard(side){
-  history.push({left:[...left],right:[...right],merged:[...merged],stack:stack.map(g=>[...g]),keep:[...keepForced],discard:[...discardForced]});
-  if(side==="A") discardForced.push(left.shift());
-  else discardForced.push(right.shift());
+  history.push(snapshot());
+  if(side==="A"){
+    if(left.length){
+      discardForced.push(left.shift());
+      awardDiscardForItem();
+    }
+  } else {
+    if(right.length){
+      discardForced.push(right.shift());
+      awardDiscardForItem();
+    }
+  }
   setSnark("discard");
   updateProgress();
   show();
 }
-
 function autoDiscard(){
-  history.push({left:[...left],right:[...right],merged:[...merged],stack:stack.map(g=>[...g]),keep:[...keepForced],discard:[...discardForced]});
+  history.push(snapshot());
   setSnark("timeout");
-  if(left.length) discardForced.push(left.shift());
-  if(right.length) discardForced.push(right.shift());
+  if(left.length){
+    left.shift();
+    awardDiscardForItem();
+  }
+  if(right.length){
+    right.shift();
+    awardDiscardForItem();
+  }
+  updateProgress();
+  show();
+}
+function goBack(){
+  if(!history.length)return;
+  const prev=history.pop();
+  restore(prev);
+  setSnark("back");
   updateProgress();
   show();
 }
 
-function goBack(){
-  if(!history.length)return;
-  const prev=history.pop();
-  left=prev.left;
-  right=prev.right;
-  merged=prev.merged;
-  stack=prev.stack;
-  if(prev.keep) keepForced=prev.keep;
-  if(prev.discard) discardForced=prev.discard;
-  setSnark("back");
-  updateProgress();
-  show();
+/* EXPORT HELPERS */
+function buildResultsText(keep,discard){
+  let text = "CHOOSING FUN TIME HAPPY TIME RESULTS\n\n";
+  text += "Kept items:\n";
+  keep.forEach(i=>{ text += "• " + i + "\n"; });
+  text += "\nReleased items:\n";
+  discard.forEach(i=>{ text += "• " + i + "\n"; });
+  text += "\nGenerated: " + new Date().toLocaleString();
+  return text;
+}
+
+function exportToNotes(){
+  if(!resultsText){
+    alert("No results to export yet.");
+    return;
+  }
+  if(navigator.share){
+    navigator.share({
+      title: "Choosing Fun Time Results",
+      text: resultsText
+    }).catch(()=>{});
+  }else{
+    alert("Sharing is not supported in this browser.");
+  }
+}
+
+function emailResultsToHollie(){
+  if(!resultsText){
+    alert("No results to email yet.");
+    return;
+  }
+  const subject = encodeURIComponent("Choosing Fun Time Results");
+  const body = encodeURIComponent(resultsText);
+  window.location.href = "mailto:holliepoppie@hotmail.com?subject=" + subject + "&body=" + body;
 }
 
 function finish(){
@@ -593,22 +860,33 @@ function finish(){
     return list.map(i=>`<div>• ${i}</div>`).join("");
   }
 
+  resultsText = buildResultsText(keep, discard);
+
   document.getElementById("compare").classList.add("hidden");
   const res=document.getElementById("results");
   res.classList.remove("hidden");
   res.innerHTML=
     "<h2>Hollie keeps 💖</h2>"+format(keep)+
     "<h2>Released with glitter ✨</h2>"+format(discard)+
+    "<br>" +
+    "<button class='btn-secondary' onclick='exportToNotes()'>Export to Notes / Share</button>" +
+    "<button class='btn-secondary' onclick='emailResultsToHollie()'>Email results to Hollie</button>" +
     "<br><button class='btn-primary' onclick='resetAll()'>PLAY AGAIN</button>";
   setSnark("finish");
   updateProgress();
+
+  // small bonus just for finishing a game
+  awardPoints(5);
 }
 
 function resetAll(){
-  const sure = confirm("Are you sure you want to reset?\nAll progress will be lost!");
+  const sure = confirm("Are you sure you want to reset?\nAll progress will be lost for this game (points stay)!");
   if(!sure) return;
   location.reload();
 }
+
+loadPoints();
 </script>
+
 </body>
 </html>

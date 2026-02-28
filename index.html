@@ -431,6 +431,55 @@ A WHOLE DAY UNINTERRUPTED TO DO YOUR HOBBIES! — 1000 pts
   <button class="btn-secondary" onclick="setNewPin()">Save PIN</button>
 </div>
 
+<!-- ADMIN DASHBOARD (FULL PAGE) -->
+<div id="adminPage" class="glass hidden" 
+     style="position:absolute; top:0; left:0; width:100%; height:100%; overflow-y:auto; padding-bottom:40px;">
+
+  <button class="btn-secondary" onclick="closeAdmin()">⬅ Back to Home</button>
+
+  <h2 style="text-align:center;">Admin Dashboard</h2>
+
+  <div style="font-size:13px; margin-bottom:10px;">
+    <strong>Local Data Overview</strong><br>
+    <div>Points: <span id="adminPoints"></span></div>
+    <div>Total Discarded Count: <span id="adminDiscardCount"></span></div>
+    <div>Reward History Count: <span id="adminHistoryCount"></span></div>
+    <div>Bonus Tier PIN: <span id="adminPIN"></span></div>
+  </div>
+
+  <hr>
+
+  <h3>Edit Values</h3>
+  <div style="font-size:13px;">
+    <label>Set Points:</label>
+    <input id="adminSetPoints" type="number" style="width:100%; padding:6px; border-radius:10px;">
+    <button class="btn-secondary" onclick="adminApplyPoints()">Apply</button>
+
+    <label>Set Total Discarded Count:</label>
+    <input id="adminSetDiscard" type="number" style="width:100%; padding:6px; border-radius:10px;">
+    <button class="btn-secondary" onclick="adminApplyDiscard()">Apply</button>
+
+    <label>Set New Bonus Tier PIN:</label>
+    <input id="adminSetPIN" type="password" maxlength="4" style="width:100%; padding:6px; border-radius:10px;">
+    <button class="btn-secondary" onclick="adminApplyPIN()">Apply</button>
+  </div>
+
+  <hr>
+
+  <h3>Reset Options</h3>
+  <button class="btn-danger" onclick="adminResetPoints()">Reset Points Only</button>
+  <button class="btn-danger" onclick="adminResetDiscard()">Reset Discard Counter Only</button>
+  <button class="btn-danger" onclick="adminResetHistory()">Clear Reward History</button>
+  <button class="btn-danger" onclick="adminFactoryReset()">FULL FACTORY RESET</button>
+
+  <hr>
+
+  <h3>Export Data</h3>
+  <button class="btn-secondary" onclick="adminExportData()">Export All Data (Share Sheet)</button>
+
+</div>
+
+
 <script>
 let items=[],target=0;
 let stack=[],left=[],right=[],merged=[];

@@ -121,6 +121,23 @@ button:active{transform:scale(0.96);}
   gap:6px;
 }
 
+/* Progress bar */
+.progress-container{
+  width:100%;
+  height:10px;
+  background:rgba(255,255,255,0.6);
+  border-radius:999px;
+  overflow:hidden;
+  box-shadow:0 0 8px var(--glow);
+  margin-top:2px;
+}
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--pink), var(--pink-soft));
+  transition:width 0.25s ease-out;
+}
+
 /* Speech + mascot row */
 .header-row{
   display:flex;
@@ -218,7 +235,7 @@ button:active{transform:scale(0.96);}
   margin:2px 0 4px;
 }
 
-/* Heart shape using two circles + triangle */
+/* Heart shape */
 .heart-shell{
   width:60px;
   height:54px;
@@ -296,6 +313,11 @@ button:active{transform:scale(0.96);}
   </div>
 
   <div id="compare" class="glass hidden">
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
     <div class="header-row">
       <div id="speechBubble">Hi Hollie!! It’s choosing fun time happy time!! 💖✨</div>
       <div id="robotFace">^_^</div>
@@ -444,6 +466,24 @@ function spawnFloating(){
 }
 setInterval(spawnFloating,1200);
 
+/* PROGRESS BAR */
+function updateProgress(){
+  if(!items.length) return;
+  const total = items.length;
+
+  let remaining = 0;
+  if(left && left.length) remaining += left.length;
+  if(right && right.length) remaining += right.length;
+  if(stack && stack.length){
+    for(const group of stack) remaining += group.length;
+  }
+  // merged + keepForced + discardForced are already part of total,
+  // but not in remaining, so they count as resolved.
+  const resolved = Math.max(total - remaining, 0);
+  const pct = Math.min((resolved / total) * 100, 100);
+  document.getElementById("progressBar").style.width = pct + "%";
+}
+
 function start(){
   items=document.getElementById("items").value.split("\n").map(x=>x.trim()).filter(Boolean);
   target=parseInt(document.getElementById("target").value);
@@ -453,9 +493,11 @@ function start(){
   }
   stack=items.map(i=>[i]);
   history=[];keepForced=[];discardForced=[];
+  left=[];right=[];merged=[];
   document.getElementById("setup").classList.add("hidden");
   document.getElementById("compare").classList.remove("hidden");
   setSnark("start");
+  updateProgress();
   nextMerge();
 }
 
@@ -464,51 +506,62 @@ function nextMerge(){
   left=stack.shift();
   right=stack.shift();
   merged=[];
+  updateProgress();
   show();
 }
 
 function show(){
   if(!left.length){
     stack.push(merged.concat(right));
+    updateProgress();
     nextMerge();
     return;
   }
   if(!right.length){
     stack.push(merged.concat(left));
+    updateProgress();
     nextMerge();
     return;
   }
   document.getElementById("cardA").innerText=left[0];
   document.getElementById("cardB").innerText=right[0];
+  updateProgress();
   startTimer();
 }
 
 function choose(side){
-  history.push({left:[...left],right:[...right],merged:[...merged],stack:[...stack]});
+  history.push({left:[...left],right:[...right],merged:[...merged],stack:stack.map(g=>[...g])});
   if(side==="A") merged.push(left.shift());
   else merged.push(right.shift());
   setSnark("choose");
+  updateProgress();
   show();
 }
 
 function forceKeep(side){
+  history.push({left:[...left],right:[...right],merged:[...merged],stack:stack.map(g=>[...g]),keep:[...keepForced],discard:[...discardForced]});
   if(side==="A") keepForced.push(left.shift());
   else keepForced.push(right.shift());
   setSnark("keep");
+  updateProgress();
   show();
 }
 
 function forceDiscard(side){
+  history.push({left:[...left],right:[...right],merged:[...merged],stack:stack.map(g=>[...g]),keep:[...keepForced],discard:[...discardForced]});
   if(side==="A") discardForced.push(left.shift());
   else discardForced.push(right.shift());
   setSnark("discard");
+  updateProgress();
   show();
 }
 
 function autoDiscard(){
+  history.push({left:[...left],right:[...right],merged:[...merged],stack:stack.map(g=>[...g]),keep:[...keepForced],discard:[...discardForced]});
   setSnark("timeout");
   if(left.length) discardForced.push(left.shift());
   if(right.length) discardForced.push(right.shift());
+  updateProgress();
   show();
 }
 
@@ -519,13 +572,17 @@ function goBack(){
   right=prev.right;
   merged=prev.merged;
   stack=prev.stack;
+  if(prev.keep) keepForced=prev.keep;
+  if(prev.discard) discardForced=prev.discard;
   setSnark("back");
+  updateProgress();
   show();
 }
 
 function finish(){
   clearInterval(timer);
-  let ranked=stack[0];
+  let ranked=stack[0] || [];
+
   ranked=keepForced.concat(ranked.filter(x=>!keepForced.includes(x)));
   ranked=ranked.filter(x=>!discardForced.includes(x));
 
@@ -544,9 +601,14 @@ function finish(){
     "<h2>Released with glitter ✨</h2>"+format(discard)+
     "<br><button class='btn-primary' onclick='resetAll()'>PLAY AGAIN</button>";
   setSnark("finish");
+  updateProgress();
 }
 
-function resetAll(){location.reload();}
+function resetAll(){
+  const sure = confirm("Are you sure you want to reset?\nAll progress will be lost!");
+  if(!sure) return;
+  location.reload();
+}
 </script>
 </body>
 </html>
